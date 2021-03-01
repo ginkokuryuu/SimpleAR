@@ -5,7 +5,6 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     private AudioSource audioSource;
-    private bool isDetected = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,14 +58,12 @@ public class Fire : MonoBehaviour
 
     public void ObjectDetected()
     {
-        isDetected = true;
         StartAudio();
         StartParticle();
     }
 
     public void ObjectNotDetected()
     {
-        isDetected = false;
         StopAudio();
         StopParticle();
     }

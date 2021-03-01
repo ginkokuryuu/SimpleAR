@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScreenshotHandler : MonoBehaviour
 {
+	private string directoryPath;
+
     // Start is called before the first frame update
     void Start()
     {
-
-		string directoryPath = Path.Combine(Application.persistentDataPath, "Screenshots");
-		string time = System.DateTime.Now.ToString("HH:mm:ss_dd-MMMM-yyyy");
-
-		print(time);
 	}
 
-    public void TakeScreenshot()
+
+	public void TakeScreenshot()
 	{
 		StartCoroutine(TakeScreenshotAndShare());
 	}
@@ -24,9 +23,11 @@ public class ScreenshotHandler : MonoBehaviour
 	{
 		yield return new WaitForEndOfFrame();
 
-		string directoryPath = Path.Combine(Application.persistentDataPath, "Screenshots");
+		directoryPath = Path.Combine(Application.persistentDataPath, "Screenshots");
 		if (!Directory.Exists(directoryPath))
+		{
 			Directory.CreateDirectory(directoryPath);
+		}
 
 		string time = System.DateTime.Now.ToString("HH-mm-ss_dd-MMMM-yyyy");
 		string fileName = "SimpleAR_" + time + ".png";
